@@ -1,0 +1,174 @@
+/* CTA Section */
+.cta-section {
+  background-color: #2F5A33;
+  color: white;
+  padding: 4.5rem 0;
+  margin-top: 4rem;
+}
+
+.cta-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  line-height: 1.2;
+}
+
+.cta-description {
+  font-size: 1.15rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-buttons .btn {
+  padding: 0.875rem 2.25rem;
+  font-weight: 600;
+  border-width: 2px;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+}
+
+.cta-buttons .btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Footer Content */
+.footer-content {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 4rem 0 3.5rem;
+}
+
+.footer-brand h3 {
+  color: white;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  font-size: 1.5rem;
+}
+
+.footer-brand p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.footer-content h4 {
+  color: white;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.3px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.875rem;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  display: inline-block;
+  position: relative;
+}
+
+.footer-links a:hover {
+  color: white;
+  transform: translateX(5px);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  background-color: #141414;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 1.5rem 0;
+  font-size: 0.9rem;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .cta-title {
+    font-size: 2.25rem;
+  }
+
+  .cta-description {
+    font-size: 1.1rem;
+  }
+
+  .footer-content {
+    padding: 3.5rem 0 3rem;
+  }
+
+  .footer-brand h3 {
+    font-size: 1.35rem;
+  }
+
+  .footer-content h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .cta-section {
+    padding: 3.5rem 0;
+    margin-top: 3rem;
+  }
+
+  .cta-title {
+    font-size: 1.875rem;
+  }
+
+  .cta-description {
+    font-size: 1rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .cta-buttons .btn {
+    width: 100%;
+    padding: 0.75rem 2rem;
+    font-size: 0.95rem;
+  }
+
+  .footer-content {
+    padding: 3rem 0 2.5rem;
+  }
+
+  .footer-brand h3 {
+    font-size: 1.25rem;
+  }
+
+  .footer-content h4 {
+    font-size: 1.05rem;
+    margin-bottom: 1.15rem;
+  }
+
+  .footer-links a {
+    font-size: 0.9rem;
+  }
+
+  .footer-bottom {
+    padding: 1.25rem 0;
+    font-size: 0.85rem;
+  }
+} 

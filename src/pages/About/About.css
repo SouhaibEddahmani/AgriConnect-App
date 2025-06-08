@@ -1,0 +1,258 @@
+.about-page {
+  padding-top: 0;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  color: white;
+  padding: 8rem 0;
+  text-align: center;
+  background-image: url('/farmers-working.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Add a subtle overlay to ensure text readability */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3));
+  pointer-events: none;
+}
+
+.hero-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-section h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-section p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.hero-section .btn {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* Our Journey Section */
+.our-journey {
+  padding: 6rem 0;
+  background-color: #f8f9fa;
+}
+
+.journey-content h2 {
+  font-size: 2.5rem;
+  color: #2F5A33;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.journey-content p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+.journey-image {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.journey-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Values Section */
+.values-section {
+  padding: 5rem 0;
+  background-color: white;
+}
+
+.value-card {
+  padding: 2rem;
+  text-align: center;
+  height: 100%;
+}
+
+.value-card h3 {
+  color: #2F5A33;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.value-card p {
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.value-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.value-card ul li {
+  margin-bottom: 0.5rem;
+}
+
+/* Team Section */
+.team-section {
+  padding: 6rem 0;
+  background-color: #f8f9fa;
+}
+
+.team-section h2 {
+  color: #2F5A33;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.team-member {
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-5px);
+}
+
+.member-avatar {
+  width: 120px;
+  height: 120px;
+  background-color: #2F5A33;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.team-member h3 {
+  color: #2F5A33;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.member-role {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.team-member p {
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Impact Section */
+.impact-section {
+  padding: 5rem 0;
+  background-color: white;
+}
+
+.impact-section h2 {
+  color: #2F5A33;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.impact-stat {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.stat-number {
+  color: #2F5A33;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  color: #666;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .hero-section {
+    padding: 6rem 0;
+  }
+
+  .hero-section h1 {
+    font-size: 2.75rem;
+  }
+
+  .journey-content h2,
+  .team-section h2,
+  .impact-section h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 5rem 0;
+  }
+
+  .hero-section h1 {
+    font-size: 2.25rem;
+  }
+
+  .hero-section p {
+    font-size: 1.1rem;
+  }
+
+  .journey-image img {
+    height: 300px;
+  }
+
+  .value-card {
+    margin-bottom: 2rem;
+  }
+} 
