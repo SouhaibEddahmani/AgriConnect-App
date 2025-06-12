@@ -1,0 +1,33 @@
+:root {
+  /* Primary Colors */
+  --primary-green: #2E7D32;  /* Professional forest green */
+  --primary-green-light: #4CAF50;  /* Lighter green for hover states */
+  --primary-green-dark: #1B5E20;  /* Darker green for active states */
+  
+  /* Accent Colors */
+  --accent-yellow: #FFB300;  /* Professional amber yellow */
+  --accent-yellow-light: #FFD54F;  /* Light yellow for backgrounds */
+  --accent-yellow-dark: #FF8F00;  /* Dark yellow for hover states */
+  
+  /* Neutral Colors */
+  --neutral-dark: #263238;  /* Dark text */
+  --neutral-medium: #546E7A;  /* Medium text */
+  --neutral-light: #ECEFF1;  /* Light backgrounds */
+  --neutral-white: #FFFFFF;  /* White */
+  
+  /* Status Colors */
+  --success: #43A047;  /* Success green */
+  --warning: #FFA000;  /* Warning amber */
+  --error: #D32F2F;  /* Error red */
+  --info: #1976D2;  /* Info blue */
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+} 

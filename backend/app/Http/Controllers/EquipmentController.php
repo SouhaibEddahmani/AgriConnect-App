@@ -20,12 +20,26 @@ class EquipmentController extends Controller
             $query->where('type', $type);
         }
         if ($priceRange = $request->query('priceRange')) {
-            if ($priceRange === 'under-300') $query->where('daily_rate', '<', 300);
-            elseif ($priceRange === '300-350') $query->whereBetween('daily_rate', [300, 350]);
-            elseif ($priceRange === 'over-350') $query->where('daily_rate', '>', 350);
+            if ($priceRange === 'under-300') {
+                $query->where('daily_rate', '<', 300);
+            } elseif ($priceRange === '300-350') {
+                $query->whereBetween('daily_rate', [300, 350]);
+            } elseif ($priceRange === 'over-350') {
+                $query->where('daily_rate', '>', 350);
+            }
         }
         if ($availability = $request->query('availability')) {
-            if ($availability === 'now') $query->where('status', 'active');
+            if ($availability === 'now') {
+                $query->where('status', 'active');
+            } elseif ($availability === 'next-week') {
+                $query->where(function($q) {
+                    $q->whereNull('id'); // Placeholder: implement logic for next-week availability
+                });
+            } elseif ($availability === 'next-month') {
+                $query->where(function($q) {
+                    $q->whereNull('id'); // Placeholder: implement logic for next-month availability
+                });
+            }
         }
         if ($sortBy = $request->query('sortBy')) {
             if ($sortBy === 'price-low') $query->orderBy('daily_rate', 'asc');
@@ -123,8 +137,8 @@ class EquipmentController extends Controller
                     $file = $request->file("images.$idx");
                     \Log::info("[EquipmentController] images.{$idx} value:", ['value' => $value, 'file' => $file]);
                     if ($file) {
-                        if (!$file->isValid() || !in_array($file->extension(), ['jpg', 'jpeg', 'png'])) {
-                            $fail('The ' . $attribute . ' must be a valid image file (jpg, jpeg, png).');
+                        if (!$file->isValid() || !in_array($file->extension(), ['jpg', 'jpeg', 'png', 'gif'])) {
+                            $fail('The ' . $attribute . ' must be a valid image file (jpg, jpeg, png, gif).');
                         }
                         if ($file->getSize() > 10240 * 1024) {
                             $fail('The ' . $attribute . ' may not be greater than 10MB.');
