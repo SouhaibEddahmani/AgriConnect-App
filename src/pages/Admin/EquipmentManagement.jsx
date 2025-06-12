@@ -58,8 +58,10 @@ const EquipmentManagement = () => {
   };
 
   const filteredEquipment = equipment.filter(item => {
+    const itemCategory = (item.type || item.category || '').toLowerCase();
+    const filterCategory = filters.category.toLowerCase();
     return (
-      (!filters.category || item.category === filters.category) &&
+      (!filters.category || itemCategory === filterCategory) &&
       (!filters.status || item.status === filters.status)
     );
   });
@@ -88,9 +90,9 @@ const EquipmentManagement = () => {
               onChange={(e) => setFilters({ ...filters, category: e.target.value })}
             >
               <option value="">All Categories</option>
-              <option value="tractor">Tractors</option>
-              <option value="harvester">Harvesters</option>
-              <option value="plow">Plows</option>
+              <option value="tractor">Tractor</option>
+              <option value="harvester">Harvester</option>
+              <option value="plow">Plow</option>
               <option value="other">Other</option>
             </select>
             <select
@@ -100,7 +102,8 @@ const EquipmentManagement = () => {
             >
               <option value="">All Status</option>
               <option value="active">Active</option>
-              <option value="pending">Pending</option>
+              <option value="published">Published</option>
+              <option value="draft">Draft</option>
               <option value="inactive">Inactive</option>
             </select>
           </div>
@@ -130,9 +133,9 @@ const EquipmentManagement = () => {
               {filteredEquipment.map(item => (
                 <tr key={item.id}>
                   <td>{item.name}</td>
-                  <td>{item.category}</td>
-                  <td>{`${item.user?.prenom} ${item.user?.name}`}</td>
-                  <td>${item.daily_rate}</td>
+                  <td>{item.type || item.category || '-'}</td>
+                  <td>{item.user?.name ? item.user.name : 'Admin'}</td>
+                  <td>{item.price || item.minPrice || '-'}</td>
                   <td>
                     <select
                       className={`form-select form-select-sm w-auto ${

@@ -7,22 +7,23 @@
 
 /* Sidebar Styles */
 .filters-sidebar {
-  width: 240px;
+  width: 140px;
   flex-shrink: 0;
+  padding-right: 4px;
 }
 
 .filters-sidebar h3 {
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 600;
-  margin: 0 0 16px 0;
+  margin: 0 0 8px 0;
 }
 
 .clear-all {
   color: #666;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 12px;
   display: block;
-  margin-bottom: 24px;
+  margin-bottom: 10px;
 }
 
 .clear-all:hover {
@@ -30,14 +31,14 @@
 }
 
 .filter-group {
-  margin-bottom: 24px;
+  margin-bottom: 10px;
 }
 
 .filter-group h4 {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   color: #333;
-  margin: 0 0 12px 0;
+  margin: 0 0 5px 0;
 }
 
 .filter-group ul {
@@ -47,13 +48,13 @@
 }
 
 .filter-group ul li {
-  margin-bottom: 8px;
+  margin-bottom: 3px;
 }
 
 .filter-group ul li a {
   color: #666;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 12px;
   transition: color 0.2s;
 }
 
@@ -67,11 +68,11 @@
 }
 
 .location-text {
-  font-size: 14px;
+  font-size: 12px;
   color: #666;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
 }
 
 /* Main Content Styles */
@@ -320,6 +321,11 @@
   .equipment-grid.list .equipment-card {
     grid-template-columns: 240px 1fr;
   }
+
+  .filters-sidebar {
+    width: 100%;
+    padding-right: 0;
+  }
 }
 
 @media (max-width: 768px) {
@@ -327,10 +333,6 @@
     flex-direction: column;
   }
   
-  .filters-sidebar {
-    width: 100%;
-  }
-
   .equipment-grid {
     grid-template-columns: 1fr;
   }
@@ -427,4 +429,829 @@
 .clear-filters-btn:hover {
   background: #2B5727;
   color: white;
+}
+
+.tags-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.tag {
+  background: #f3f7f3;
+  color: #2B5727;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 12px;
+  padding: 3px 12px;
+  display: inline-block;
+  border: 1px solid #e0e6e0;
+}
+
+.location-dot {
+  color: #2B5727;
+  font-size: 16px;
+  margin-right: 4px;
+}
+
+.location-sub {
+  font-size: 13px;
+  color: #888;
+  margin-left: 22px;
+  margin-top: 2px;
+}
+
+.equipment-listing-page {
+  background: #f9faf8;
+  min-height: 100vh;
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
+    align-items: flex-start;
+  }
+
+.listing-container {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
+  padding: 32px 32px 24px 32px;
+  max-width: 700px;
+  width: 100%;
+}
+
+/* Remove or comment out old stepper styles to avoid conflicts */
+/*
+.stepper, .step, .stepper::before, .step.active, .step.completed {
+  all: unset;
+}
+*/
+
+/* Place new custom stepper and header styles at the end for higher specificity */
+.listing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  background: #eaf6ea;
+  border-radius: 12px 12px 0 0;
+  padding: 24px 32px 0 32px;
+  margin: -32px -32px 0 -32px;
+}
+.listing-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+.step-count {
+  color: #555;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.custom-stepper {
+  background: #eaf6ea;
+  border-radius: 0 0 12px 12px;
+  padding: 0 32px 18px 32px;
+  margin: 0 -32px 32px -32px;
+  box-sizing: border-box;
+}
+.progress-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: #fff;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: #2B5727;
+  border-radius: 6px;
+  transition: width 0.3s;
+}
+.step-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+}
+.step-label {
+  flex: 1;
+  text-align: center;
+  color: #7a8a7a;
+  font-size: 1rem;
+  font-weight: 500;
+  padding-top: 8px;
+  transition: color 0.2s, font-weight 0.2s;
+  white-space: nowrap;
+}
+.step-label.active,
+.step-label.completed {
+  color: #2B5727 !important;
+  font-weight: 700 !important;
+}
+@media (max-width: 900px) {
+  .listing-header, .custom-stepper {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .step-label {
+    font-size: 0.95rem;
+  }
+}
+@media (max-width: 600px) {
+  .listing-header, .custom-stepper {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+  .step-label {
+    font-size: 0.85rem;
+    padding-top: 4px;
+  }
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  font-weight: 500;
+  color: #2B5727;
+  margin-bottom: 6px;
+  display: block;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #dbe5db;
+  border-radius: 6px;
+  font-size: 15px;
+  background: #f8faf8;
+  margin-top: 4px;
+  margin-bottom: 2px;
+  transition: border 0.2s;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #2B5727;
+  outline: none;
+}
+.form-group small {
+  color: #888;
+  margin-top: 2px;
+  display: block;
+}
+.info-box {
+  background: #fff7e6;
+  border-left: 4px solid #f7c873;
+  color: #7a5a00;
+  font-size: 15px;
+  margin-top: 18px;
+  margin-bottom: 10px;
+  padding: 14px 18px;
+  border-radius: 8px;
+}
+.listing-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 12px;
+}
+.draft-saved-msg {
+  color: #2B5727;
+  margin-top: 10px;
+  font-weight: 500;
+  text-align: right;
+}
+@media (max-width: 900px) {
+  .listing-container {
+    padding: 18px 4px 12px 4px;
+  }
+  .step {
+    min-width: 80px;
+    font-size: 13px;
+    padding: 8px 0;
+  }
+  .stepper {
+    gap: 8px;
+  }
+}
+@media (max-width: 600px) {
+  .equipment-listing-page {
+    padding: 8px 0;
+  }
+  .listing-container {
+    padding: 8px 2px 8px 2px;
+    border-radius: 8px;
+  }
+  .step {
+    min-width: 60px;
+    font-size: 11px;
+    padding: 6px 0;
+  }
+  .stepper {
+    gap: 2px;
+  }
+}
+
+.form-group.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #2B5727;
+  cursor: pointer;
+}
+.form-group input[type="radio"] {
+  accent-color: #2B5727;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+}
+
+/* Buttons */
+.btn-success, .btn-outline-secondary {
+  font-size: 16px;
+  border-radius: 6px;
+  padding: 8px 24px;
+  font-weight: 600;
+}
+.btn-success {
+  background: #2B5727;
+  border: none;
+  color: #fff;
+}
+.btn-success:hover {
+  background: #1e3d1c;
+}
+.btn-outline-secondary {
+  border: 1.5px solid #2B5727;
+  color: #2B5727;
+  background: #fff;
+}
+.btn-outline-secondary:hover {
+  background: #eaf6ea;
+  color: #1e3d1c;
+}
+
+.demand-legend {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+  font-size: 15px;
+  align-items: center;
+}
+.demand-label {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #fff;
+  font-size: 14px;
+}
+.demand-label.low, .demand-low { background: #b7e4c7; color: #205c2b; }
+.demand-label.medium, .demand-medium { background: #74c69d; color: #205c2b; }
+.demand-label.high, .demand-high { background: #40916c; color: #fff; }
+.demand-label.very-high, .demand-very-high { background: #1b4332; color: #fff; }
+
+.seasonal-heatmap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+.month-block {
+  min-width: 90px;
+  margin-bottom: 8px;
+}
+.month-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2B5727;
+  margin-bottom: 4px;
+  text-align: center;
+}
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+}
+.heat-cell {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 1px;
+}
+
+.smart-pricing-box, .manual-pricing-box {
+  background: #f8faf8;
+  border-radius: 10px;
+  padding: 18px 18px 10px 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.04);
+  }
+.smart-pricing-desc {
+  color: #2B5727;
+  font-size: 15px;
+  margin: 12px 0 18px 0;
+  text-align: center;
+}
+.min-price-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+.price-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.price-row .demand-label {
+  min-width: 70px;
+  text-align: left;
+  font-size: 15px;
+  margin-right: 8px;
+}
+
+.address-autocomplete { position: relative; }
+.input-with-icon { position: relative; }
+.input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a259e6;
+  font-size: 1.2em;
+  z-index: 2;
+}
+.input-with-icon input {
+  padding-left: 2.2em;
+}
+.suggestions-dropdown {
+  border: 1px solid #a259e6;
+  border-radius: 8px;
+  margin-top: 2px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(162,89,230,0.1);
+  list-style: none;
+  padding: 0;
+  z-index: 10;
+  position: absolute;
+  width: 100%;
+  max-height: 220px;
+  overflow-y: auto;
+}
+.suggestions-dropdown li {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 15px;
+}
+.dropdown-icon {
+  color: #a259e6;
+  margin-right: 8px;
+  font-size: 1.1em;
+}
+.suggestions-dropdown li:hover {
+  background: #f3eaff;
+}
+
+/* --- Reservation Flow Styles --- */
+.reservation-page {
+  min-height: 100vh;
+  background: #fafcf9;
+  width: 100%;
+  padding: 0;
+}
+.reservation-content {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px 0;
+}
+.reservation-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(44,62,80,0.08);
+  padding: 32px;
+  margin-bottom: 32px;
+}
+.booking-details-card {
+  min-width: 380px;
+  max-width: 420px;
+}
+.equipment-summary-card {
+  width: 340px;
+  padding: 0;
+  overflow: hidden;
+}
+.reservation-stepper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+.step-circle {
+  background: #2B5727;
+  color: #fff;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 16px;
+}
+.step-label {
+  color: #444;
+  font-weight: 500;
+  font-size: 15px;
+}
+.reservation-title {
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+.reservation-label {
+  color: #222;
+  font-weight: 500;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+.reservation-date-fields {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+.reservation-date-fields label {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 4px;
+  display: block;
+}
+.reservation-date-fields input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-top: 4px;
+  font-size: 15px;
+}
+.reservation-next-btn {
+  margin-top: 24px;
+  width: 100%;
+  padding: 12px 0;
+  background: #2B5727;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 17px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.reservation-next-btn:disabled {
+  background: #b7c9b7;
+  cursor: not-allowed;
+}
+.equipment-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+.equipment-image-placeholder {
+  width: 100%;
+  height: 180px;
+  background: #eaf6ea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-size: 32px;
+}
+.equipment-summary-content {
+  padding: 24px;
+}
+.equipment-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+.equipment-title {
+  font-weight: 700;
+  font-size: 18px;
+}
+.equipment-year {
+  color: #888;
+  font-weight: 400;
+}
+.equipment-rating {
+  color: #2B5727;
+  font-weight: 600;
+  font-size: 15px;
+}
+.equipment-rating-count {
+  color: #888;
+  font-weight: 400;
+  font-size: 14px;
+}
+.equipment-location {
+  color: #666;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+.equipment-features-label {
+  font-weight: 600;
+  font-size: 15px;
+  margin: 10px 0 4px 0;
+}
+.equipment-features-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 10px;
+}
+.equipment-summary-label {
+  font-weight: 600;
+  font-size: 15px;
+  margin: 10px 0 4px 0;
+}
+.equipment-summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+.total-row {
+  font-weight: 700;
+  font-size: 16px;
+  margin-top: 10px;
+  color: #2B5727;
+}
+/* Step 2: Details */
+.details-step {
+  display: flex;
+  gap: 40px;
+}
+.details-left {
+  flex: 1 1 420px;
+  min-width: 380px;
+  max-width: 520px;
+}
+.details-right {
+  width: 340px;
+  min-width: 300px;
+}
+.rental-summary-card {
+  margin-bottom: 28px;
+}
+.equipment-summary-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 12px;
+}
+.equipment-image-sm {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #eaf6ea;
+}
+.equipment-feature-badge {
+  background: #eaf6ea;
+  color: #2B5727;
+  border-radius: 8px;
+  padding: 2px 10px;
+  font-size: 13px;
+  margin-right: 6px;
+  margin-bottom: 4px;
+  display: inline-block;
+}
+.rental-summary-info {
+  font-size: 15px;
+  color: #444;
+  margin-top: 8px;
+}
+.rental-summary-total {
+  font-weight: 700;
+  font-size: 17px;
+  color: #2B5727;
+  margin-top: 8px;
+}
+.insurance-card {
+  margin-bottom: 28px;
+}
+.insurance-title {
+  font-weight: 600;
+  font-size: 17px;
+  margin-bottom: 12px;
+}
+.insurance-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #f6f8f6;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border 0.2s, background 0.2s;
+}
+.insurance-option.selected {
+  border: 2px solid #2B5727;
+  background: #eaf6ea;
+}
+.insurance-label {
+  font-weight: 600;
+  font-size: 15px;
+}
+.insurance-desc {
+  font-size: 13px;
+  color: #555;
+}
+.insurance-price {
+  font-size: 14px;
+  color: #2B5727;
+  font-weight: 600;
+}
+.notes-card {
+  margin-bottom: 28px;
+}
+.notes-title {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+.notes-textarea {
+  width: 100%;
+  min-height: 60px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 15px;
+  resize: vertical;
+}
+.deposit-card {
+  margin-bottom: 28px;
+}
+.deposit-title {
+  font-weight: 600;
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+.deposit-desc {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 16px;
+}
+.deposit-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  font-size: 14px;
+}
+/* Step 3: Payment */
+.payment-step {
+  display: flex;
+  gap: 40px;
+}
+.payment-left {
+  flex: 1 1 420px;
+  min-width: 380px;
+  max-width: 520px;
+}
+.payment-right {
+  width: 340px;
+  min-width: 300px;
+}
+.payment-form-card {
+  margin-bottom: 28px;
+}
+.payment-title {
+  font-weight: 600;
+  font-size: 22px;
+  margin-bottom: 18px;
+}
+.payment-method-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.payment-method-btn {
+  flex: 1;
+  padding: 10px 0;
+  border-radius: 8px;
+  border: 2px solid #eaf6ea;
+  background: #f6f8f6;
+  color: #2B5727;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: border 0.2s, background 0.2s;
+}
+.payment-method-btn.selected {
+  border: 2px solid #2B5727;
+  background: #eaf6ea;
+}
+.payment-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.payment-fields-row {
+  display: flex;
+  gap: 12px;
+}
+.payment-fields input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+.order-summary-card {
+  margin-bottom: 28px;
+}
+.order-summary-title {
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 14px;
+}
+.order-summary-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 12px;
+}
+.order-summary-info {
+  font-size: 15px;
+  color: #444;
+  margin-top: 8px;
+}
+.order-summary-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+.order-summary-total-row {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 17px;
+  color: #2B5727;
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+.order-summary-note {
+  font-size: 13px;
+  color: #888;
+  margin-top: 10px;
+  text-align: center;
+}
+@media (max-width: 1100px) {
+  .reservation-content, .details-step, .payment-step {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+  }
+  .equipment-summary-card, .details-right, .payment-right {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+}
+@media (max-width: 700px) {
+  .reservation-content, .details-step, .payment-step {
+    padding: 16px 0;
+    gap: 12px;
+  }
+  .reservation-card {
+    padding: 16px;
+  }
+  .booking-details-card, .details-left, .payment-left {
+    min-width: 0;
+    max-width: 100%;
+  }
 } 

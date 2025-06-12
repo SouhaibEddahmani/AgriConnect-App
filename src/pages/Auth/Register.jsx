@@ -9,7 +9,9 @@ const Register = () => {
     name: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    address: '',
+    phone_number: ''
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -27,6 +29,11 @@ const Register = () => {
 
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
+      return;
+    }
+
+    if (!formData.address || !formData.phone_number) {
+      setError('Please fill in all required fields.');
       return;
     }
 
@@ -115,6 +122,34 @@ const Register = () => {
               required
               placeholder="Confirm your password"
               minLength="6"
+            />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="address" className="form-label">Address</label>
+            <input
+              type="text"
+              className="form-control"
+              id="address"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              required
+              placeholder="Enter your address"
+            />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="phone_number" className="form-label">Phone Number</label>
+            <input
+              type="tel"
+              className="form-control"
+              id="phone_number"
+              name="phone_number"
+              value={formData.phone_number}
+              onChange={handleChange}
+              required
+              placeholder="Enter your phone number"
             />
           </div>
 

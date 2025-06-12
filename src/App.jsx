@@ -21,6 +21,13 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import ListEquipment from './pages/Equipment/ListEquipment';
+import EquipmentConfirmation from './pages/Equipment/EquipmentConfirmation';
+import EquipmentDetails from './pages/Equipment/EquipmentDetails';
+import EquipmentReservation from './pages/Equipment/EquipmentReservation';
+import MyEquipmentDetails from './pages/Equipment/MyEquipmentDetails';
+import EquipmentReservationDetails from './pages/Equipment/EquipmentReservationDetails';
+import EquipmentReservationConfirm from './pages/Equipment/EquipmentReservationConfirm';
 
 const App = () => {
   const isAuthenticated = !!localStorage.getItem('token');
@@ -94,6 +101,70 @@ const App = () => {
                 <AdminRoute>
                   <EquipmentManagement />
                 </AdminRoute>
+              }
+            />
+
+            {/* Protected equipment routes */}
+            <Route
+              path="/equipment/list"
+              element={
+                <ProtectedRoute>
+                  <ListEquipment />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/equipment/confirmation"
+              element={
+                <ProtectedRoute>
+                  <EquipmentConfirmation />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/equipment/:id"
+              element={
+                <ProtectedRoute>
+                  <EquipmentDetails />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/equipment/:id/reserve"
+              element={
+                <ProtectedRoute>
+                  <EquipmentReservation />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/equipment/:id/reserve/details"
+              element={
+                <ProtectedRoute>
+                  <EquipmentReservationDetails />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/equipment/:id/reserve/confirm"
+              element={
+                <ProtectedRoute>
+                  <EquipmentReservationConfirm />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/my-equipment/:id"
+              element={
+                <ProtectedRoute>
+                  <MyEquipmentDetails />
+                </ProtectedRoute>
               }
             />
 

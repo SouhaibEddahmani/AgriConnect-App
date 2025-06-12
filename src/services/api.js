@@ -4,9 +4,7 @@ const API_URL = 'http://localhost:8000/api'; // adjust this to match your backen
 
 const api = axios.create({
   baseURL: API_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  // Do NOT set default Content-Type here; set per-request below
 });
 
 // Add a request interceptor to add the auth token to requests
@@ -53,7 +51,13 @@ export const getUserEquipment = async () => {
 
 export const createEquipment = async (equipmentData) => {
   try {
-    const response = await api.post('/equipment', equipmentData);
+    // If equipmentData is FormData, do NOT set Content-Type
+    const isFormData = equipmentData instanceof FormData;
+    const response = await api.post(
+      '/equipment',
+      equipmentData,
+      isFormData ? {} : { headers: { 'Content-Type': 'application/json' } }
+    );
     return response.data;
   } catch (error) {
     throw error.response?.data || error.message;

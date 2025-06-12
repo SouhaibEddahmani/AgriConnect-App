@@ -1,11 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Mail, Phone, MessageSquare } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import './Contact.css';
 
 const Contact = () => {
-  const handleSubmit = (e) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [status, setStatus] = useState({ type: '', message: '' });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setStatus({ type: '', message: '' });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+    setStatus({ type: 'loading', message: 'Sending your message...' });
+    try {
+      await emailjs.send(
+        'service_aojraus',
+        'template_8ytv53q',
+        {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          time: new Date().toLocaleString(),
+        },
+        'suRWpjOkOGYs_dtBi'
+      );
+      setStatus({ type: 'success', message: 'Message sent successfully!' });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      setStatus({ type: 'error', message: 'Failed to send message. Please try again.' });
+    }
   };
 
   return (
@@ -46,6 +78,9 @@ const Contact = () => {
                 <input
                   type="text"
                   id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   placeholder="John Smith"
                   required
                 />
@@ -56,6 +91,9 @@ const Contact = () => {
                 <input
                   type="email"
                   id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="john@example.com"
                   required
                 />
@@ -66,6 +104,9 @@ const Contact = () => {
                 <input
                   type="text"
                   id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
                   placeholder="How can we help?"
                   required
                 />
@@ -75,13 +116,33 @@ const Contact = () => {
                 <label htmlFor="message">Message</label>
                 <textarea
                   id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   rows="5"
                   required
                 ></textarea>
               </div>
 
-              <button type="submit" className="submit-button">Send Message</button>
+              <button type="submit" className="submit-button" disabled={status.type === 'loading'}>
+                {status.type === 'loading' ? 'Sending...' : 'Send Message'}
+              </button>
             </form>
+            {status.message && (
+              <p
+                className="emailjs-status"
+                style={{
+                  color:
+                    status.type === 'success'
+                      ? 'green'
+                      : status.type === 'error'
+                      ? 'red'
+                      : 'black'
+                }}
+              >
+                {status.message}
+              </p>
+            )}
           </div>
 
           <div className="contact-info-section">

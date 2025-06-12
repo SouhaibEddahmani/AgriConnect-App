@@ -19,8 +19,7 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
       <div className="container">
         <Link className="navbar-brand d-flex align-items-center" to="/">
-          <Tractor className="me-2" size={24} />
-          <span>AgriConnect</span>
+          <img src="/AGRONET.svg" alt="AgriConnect Logo" style={{ height: 40, marginRight: 10 }} />
         </Link>
 
         <button
@@ -83,6 +82,11 @@ const Navbar = () => {
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/dashboard">
                     Dashboard
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="btn btn-outline-success ms-lg-2 me-2" to="/equipment/list">
+                    Rent My Own Machine
                   </NavLink>
                 </li>
                 <li className="nav-item dropdown">

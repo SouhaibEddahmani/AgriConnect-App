@@ -11,6 +11,8 @@ const Signup = () => {
     email: '',
     password: '',
     confirmPassword: '',
+    address: '',
+    phone_number: '',
   });
 
   const [errors, setErrors] = useState({
@@ -71,7 +73,7 @@ const Signup = () => {
     e.preventDefault();
     
     // Validate all fields are filled
-    const requiredFields = ['firstName', 'lastName', 'email', 'password', 'confirmPassword'];
+    const requiredFields = ['firstName', 'lastName', 'email', 'password', 'confirmPassword', 'address', 'phone_number'];
     const emptyFields = requiredFields.filter(field => !formData[field]);
     
     if (emptyFields.length > 0) {
@@ -202,6 +204,36 @@ const Signup = () => {
                     <div className="invalid-feedback">{errors.confirmPassword}</div>
                   )}
                 </div>
+                <div className="mb-3">
+                  <label htmlFor="address" className="form-label">
+                    Address *
+                  </label>
+                  <input
+                    type="text"
+                    className={`form-control ${!formData.address && apiError ? 'is-invalid' : ''}`}
+                    id="address"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
+                    required
+                    disabled={isLoading}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="phone_number" className="form-label">
+                    Phone Number *
+                  </label>
+                  <input
+                    type="tel"
+                    className={`form-control ${!formData.phone_number && apiError ? 'is-invalid' : ''}`}
+                    id="phone_number"
+                    name="phone_number"
+                    value={formData.phone_number}
+                    onChange={handleChange}
+                    required
+                    disabled={isLoading}
+                  />
+                </div>
                 <button
                   type="submit"
                   className="btn btn-success w-100 mb-3"
@@ -218,7 +250,7 @@ const Signup = () => {
               </form>
             </div>
           </div>
-        </div>
+        </div>  
       </div>
     </div>
   );

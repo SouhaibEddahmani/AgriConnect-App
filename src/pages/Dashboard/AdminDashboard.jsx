@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import DashboardLayout from '../../components/DashboardLayout/DashboardLayout';
 import { Link } from 'react-router-dom';
-import { getAdminDashboardData, promoteToAdmin } from '../../services/api';
+import { getAdminDashboardData, promoteToAdmin, getAdminEquipment } from '../../services/api';
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState({
     totalUsers: 0,
     totalEquipment: 0,
     activeRentals: 0,
-    totalRevenue: 0,
-    totalBookings: 0
+    totalRevenue: 0
   });
 
   const [recentUsers, setRecentUsers] = useState([]);
   const [recentBookings, setRecentBookings] = useState([]);
+  const [equipment, setEquipment] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     loadDashboardData();
+    loadEquipment();
   }, []);
 
   const loadDashboardData = async () => {
@@ -37,6 +38,15 @@ const AdminDashboard = () => {
     }
   };
 
+  const loadEquipment = async () => {
+    try {
+      const response = await getAdminEquipment();
+      setEquipment(response.data || []);
+    } catch (err) {
+      // Optionally handle error
+    }
+  };
+
   const handlePromoteToAdmin = async (userId) => {
     try {
       await promoteToAdmin(userId);
@@ -47,6 +57,9 @@ const AdminDashboard = () => {
       console.error('Promotion error:', err);
     }
   };
+
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
+  const adminEquipment = equipment.filter(item => item.user && item.user.id === user.id);
 
   if (loading) {
     return (
@@ -89,10 +102,6 @@ const AdminDashboard = () => {
           <div className="stat-title">Total Revenue</div>
           <div className="stat-value">${stats.totalRevenue}</div>
         </div>
-        <div className="stat-card">
-          <div className="stat-title">Total Bookings</div>
-          <div className="stat-value">{stats.totalBookings}</div>
-        </div>
       </div>
 
       <div className="dashboard-sections">
@@ -114,8 +123,6 @@ const AdminDashboard = () => {
                       <th>Name</th>
                       <th>Email</th>
                       <th>Join Date</th>
-                      <th>Equipment</th>
-                      <th>Bookings</th>
                       <th>Role</th>
                       <th>Actions</th>
                     </tr>
@@ -126,8 +133,6 @@ const AdminDashboard = () => {
                         <td>{user.name}</td>
                         <td>{user.email}</td>
                         <td>{new Date(user.created_at).toLocaleDateString()}</td>
-                        <td>{user.equipment_count || 0}</td>
-                        <td>{user.bookings_count || 0}</td>
                         <td>
                           <span className={`badge ${user.is_admin ? 'bg-primary' : 'bg-secondary'}`}>
                             {user.is_admin ? 'Admin' : 'User'}
@@ -148,6 +153,47 @@ const AdminDashboard = () => {
                           <button className="btn btn-sm btn-outline-danger">
                             Delete
                           </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="section mt-4">
+          <div className="section-header">
+            <h2 className="section-title">Your Equipment</h2>
+            <Link to="/admin/equipment" className="btn btn-outline-success">
+              Manage All Equipment
+            </Link>
+          </div>
+          <div className="section-content">
+            {adminEquipment.length === 0 ? (
+              <p className="text-muted">No equipment to display.</p>
+            ) : (
+              <div className="table-responsive">
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Status</th>
+                      <th>Owner</th>
+                      <th>Daily Rate</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {adminEquipment.slice(0, 5).map(item => (
+                      <tr key={item.id}>
+                        <td>{item.name}</td>
+                        <td>{item.status}</td>
+                        <td>{item.user?.name || 'Admin'}</td>
+                        <td>{item.price || item.minPrice || '-'}</td>
+                        <td>
+                          <Link to="/admin/equipment" className="btn btn-sm btn-outline-primary">Manage</Link>
                         </td>
                       </tr>
                     ))}
