@@ -17,6 +17,8 @@ class AuthController extends Controller
             'prenom' => 'nullable|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
+            'address' => 'nullable|string|max:255',
+            'phone_number' => 'nullable|string|max:32',
         ]);
 
         $user = User::create([
@@ -25,6 +27,8 @@ class AuthController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'is_admin' => false,
+            'address' => $validated['address'] ?? null,
+            'phone_number' => $validated['phone_number'] ?? null,
         ]);
 
         return response()->json([
@@ -86,6 +90,8 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'prenom' => 'nullable|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'address' => 'nullable|string|max:255',
+            'phone_number' => 'nullable|string|max:32',
         ]);
 
         $user->update($validated);
